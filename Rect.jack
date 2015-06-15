@@ -1,0 +1,28 @@
+class Rect
+{
+  field int x, y, width, height;
+
+  constructor Rect new(int pX, int pY, int pWidth, int pHeight)
+  {
+    let x = pX;
+    let y = pY;
+    let width = pWidth;
+    let height = pHeight;
+
+    return this;
+  }
+
+  method void dispose()
+  {
+    do Memory.deAlloc(this);
+    return;
+  }
+
+  method void draw()
+  {
+    do Screen.setColor(true);
+    do Screen.drawRectangle(x, y, width, height);
+    do Screen.setColor(false);
+    return;
+  }
+}

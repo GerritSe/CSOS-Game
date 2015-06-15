@@ -20,9 +20,75 @@ class Rect
 
   method void draw()
   {
-    do Screen.setColor(true);
-    do Screen.drawRectangle(x, y, width, height);
-    do Screen.setColor(false);
+    var int tX, tY, tWidth, tHeight;
+
+    if (x > 511) {
+      return;
+    }
+    if (y > 255) {
+      return;
+    }
+
+    let tX = x;
+    let tY = y;
+    let tWidth = width;
+    let tHeight = height;
+
+    if (x < 0) {
+      let tX = 0;
+
+      if ((x + width) > 0) {
+        let tWidth = width + x;
+      }
+      if ((x + width) < 0 | (x + width) = 0) {
+        let tWidth = 0;
+      }
+    }
+
+    if (y < 0) {
+      let tY = 0;
+
+      if ((y + height) > 0) {
+       let tHeight = height + y;
+      }
+      if ((y + height) < 0 | (y + height) = 0) {
+        let tHeight = 0;
+      }
+    }
+
+    if ((x + width) > 512) {
+      let tWidth = 512 - x;
+    }
+
+    if ((y + height) > 256) {
+      let tHeight = 256 - y;
+    }
+
+    if (tWidth > 0 & tHeight > 0) {
+      do Screen.setColor(true);
+      do Screen.drawRectangle(tX, tY, tX + tWidth, tY + tHeight);
+      do Screen.setColor(false);
+    }
+    return;
+  }
+
+  method void moveUp(int px) {
+    let y = y - px;
+    return;
+  }
+
+  method void moveRight(int px) {
+    let x = x + px;
+    return;
+  }
+
+  method void moveDown(int px) {
+    let y = y + px;
+    return;
+  }
+
+  method void moveLeft(int px) {
+    let x = x - px;
     return;
   }
 }

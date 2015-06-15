@@ -42,37 +42,36 @@ class Rect
     let tWidth = width;
     let tHeight = height;
 
-    if (x < 0) {
+    if (x < 0)
+    {
       let tX = 0;
+      let tWidth = 0;
 
       if ((x + width) > 0) {
         let tWidth = width + x;
       }
-      if ((x + width) < 0 | (x + width) = 0) {
-        let tWidth = 0;
-      }
     }
 
-    if (y < 0) {
+    if (y < 0)
+    {
       let tY = 0;
+      let tHeight = 0;
 
       if ((y + height) > 0) {
        let tHeight = height + y;
       }
-      if ((y + height) < 0 | (y + height) = 0) {
-        let tHeight = 0;
-      }
     }
 
-    if ((x + width) > 512) {
-      let tWidth = 512 - x;
+    if ((x + width) > 511) {
+      let tWidth = 511 - x;
     }
 
-    if ((y + height) > 256) {
-      let tHeight = 256 - y;
+    if ((y + height) > 255) {
+      let tHeight = 255 - y;
     }
 
-    if (tWidth > 0 & tHeight > 0) {
+    if (tWidth > 0 & tHeight > 0)
+    {
       do Screen.setColor(true);
       do Screen.drawRectangle(tX, tY, tX + tWidth, tY + tHeight);
       do Screen.setColor(false);

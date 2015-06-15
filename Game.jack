@@ -1,16 +1,23 @@
 class Game
 {
   field int MAX_OBJECTS, ENEMY_SPEED;
+  field Rect player;
   field Array enemies;
   field boolean running;
+  // Direction in which the player moves
+  // 1 = up, 2 = right, etc.
+  // Standing still is not possible in this game
+  field int playerDirection;
 
   constructor Game new()
   {
     let MAX_OBJECTS = 10;
     let ENEMY_SPEED = 2;
 
+    let player = Rect.new(0, 0, 20, 20);
     let enemies = Array.new(MAX_OBJECTS);
     let running = true;
+    let playerDirection = 1;
 
     return this;
   }
@@ -24,11 +31,31 @@ class Game
 
   method void handleInputs()
   {
+    var char key;
+
+    let key = Keyboard.keyPressed();
+
+    if (key = 81) {
+      let running = false;
+    }
+    if (key = 131) {
+      let playerDirection = 1;
+    }
+    if (key = 132) {
+      let playerDirection = 2;
+    }
+    if (key = 133) {
+      let playerDirection = 3;
+    }
+    if (key = 130) {
+      let playerDirection = 4;
+    }
     return;
   }
 
   method void render()
   {
+    do player.draw();
     return;
   }
 

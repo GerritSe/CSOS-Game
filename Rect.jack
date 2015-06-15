@@ -1,6 +1,7 @@
 class Rect
 {
   field int x, y, width, height;
+  field boolean enemy;
 
   constructor Rect new(int pX, int pY, int pWidth, int pHeight)
   {
@@ -8,6 +9,7 @@ class Rect
     let y = pY;
     let width = pWidth;
     let height = pHeight;
+    let enemy = false;
 
     return this;
   }
@@ -15,6 +17,12 @@ class Rect
   method void dispose()
   {
     do Memory.deAlloc(this);
+    return;
+  }
+
+  method void isEnemy(boolean isEnemy)
+  {
+    let enemy = isEnemy;
     return;
   }
 
@@ -68,6 +76,9 @@ class Rect
       do Screen.setColor(true);
       do Screen.drawRectangle(tX, tY, tX + tWidth, tY + tHeight);
       do Screen.setColor(false);
+      if (enemy & (tHeight > 3) & (tWidth > 3)) {
+        do Screen.drawRectangle(tX + 1, tY + 1, tX + tWidth - 1, tY + tHeight - 1);
+      }
     }
     return;
   }

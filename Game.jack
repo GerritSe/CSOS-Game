@@ -1,6 +1,6 @@
 class Game
 {
-  field int MAX_OBJECTS, ENEMY_SPEED, PLAYER_SPEED;
+  field int MAX_ENEMIES, ENEMY_SPEED, PLAYER_SPEED;
   field Rect player;
   field Array enemies;
   field boolean running;
@@ -11,12 +11,12 @@ class Game
 
   constructor Game new()
   {
-    let MAX_OBJECTS   = 10;
+    let MAX_ENEMIES   = 10;
     let ENEMY_SPEED   = 2;
     let PLAYER_SPEED  = 2;
 
     let player = Rect.new(0, 0, 20, 20);
-    let enemies = Array.new(MAX_OBJECTS);
+    let enemies = Array.new(MAX_ENEMIES);
     let running = true;
     let playerDirection = 2;
 
@@ -85,7 +85,7 @@ class Game
       do gameLogic();
       do Screen.clearScreen();
       do render();
-      do Sys.wait(50);
+      do Sys.wait(20);
     }
     return;
   }

@@ -1,0 +1,44 @@
+class Game
+{
+  field int MAX_OBJECTS, ENEMY_SPEED;
+  field Array enemies;
+  field boolean running;
+
+  constructor Game new()
+  {
+    let MAX_OBJECTS = 10;
+    let ENEMY_SPEED = 2;
+
+    let enemies = Array.new(MAX_OBJECTS);
+    let running = true;
+
+    return this;
+  }
+
+  method void dispose()
+  {
+    do enemies.dispose();
+    do Memory.deAlloc(this);
+    return;
+  }
+
+  method void handleInputs()
+  {
+    return;
+  }
+
+  method void render()
+  {
+    return;
+  }
+
+  method void run()
+  {
+    while (running)
+    {
+      do handleInputs();
+      do render();
+    }
+    return;
+  }
+}

@@ -1,0 +1,15 @@
+class MathV2
+{
+  function int mod(int x, int y)
+  {
+    if (~(x > 0) | ~(y > 0)) {
+      return 0;
+    }
+
+    while (~(x < 0)) {
+      let x = x - y;
+    }
+
+    return x + y;
+  }
+}

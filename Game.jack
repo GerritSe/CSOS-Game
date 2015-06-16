@@ -56,6 +56,18 @@ class Game
 
   method void gameLogic()
   {
+    if (player.getX() < 0) {
+      let playerDirection = 2;
+    }
+    if (player.getY() < 0) {
+      let playerDirection = 3;
+    }
+    if ((player.getX() + player.getWidth()) > 511) {
+      let playerDirection = 4;
+    }
+    if ((player.getY() + player.getHeight()) > 255) {
+      let playerDirection = 1;
+    }
     if (playerDirection = 1) {
       do player.moveUp(PLAYER_SPEED);
     }

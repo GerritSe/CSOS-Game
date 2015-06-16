@@ -105,4 +105,24 @@ class Rect
     let x = x - px;
     return;
   }
+
+  method int getX()
+  {
+    return x;
+  }
+
+  method int getY()
+  {
+    return y;
+  }
+
+  method int getWidth()
+  {
+    return width;
+  }
+
+  method int getHeight()
+  {
+    return height;
+  }
 }

@@ -82,22 +82,26 @@ class Rect
     return;
   }
 
-  method void moveUp(int px) {
+  method void moveUp(int px)
+  {
     let y = y - px;
     return;
   }
 
-  method void moveRight(int px) {
+  method void moveRight(int px)
+  {
     let x = x + px;
     return;
   }
 
-  method void moveDown(int px) {
+  method void moveDown(int px)
+  {
     let y = y + px;
     return;
   }
 
-  method void moveLeft(int px) {
+  method void moveLeft(int px)
+  {
     let x = x - px;
     return;
   }

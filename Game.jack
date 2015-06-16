@@ -1,6 +1,6 @@
 class Game
 {
-  field int MAX_ENEMIES, MAX_ENEMY_SIZE, MIN_ENEMY_SIZE, ENEMY_SPEED, PLAYER_SPEED;
+  field int MAX_ENEMIES, MAX_ENEMY_SIZE, MIN_ENEMY_SIZE, MIN_ENEMY_SPEED, MAX_ENEMY_SPEED, PLAYER_SPEED;
   field Rect player;
   field Array enemies;
   field boolean running;
@@ -17,7 +17,8 @@ class Game
     let MAX_ENEMIES     = 20;
     let MAX_ENEMY_SIZE  = 40;
     let MIN_ENEMY_SIZE  = 15;
-    let ENEMY_SPEED     = 2;
+    let MAX_ENEMY_SPEED = 4;
+    let MIN_ENEMY_SPEED = 2; // Do not set below 2
     let PLAYER_SPEED    = 4;
 
     let player = Rect.new(0, 0, 20, 20, PLAYER_SPEED);
@@ -32,7 +33,7 @@ class Game
     let i = 0;
     while (i < MAX_ENEMIES)
     {
-      let rect =  Rect.new(-100 , -100, 25, 25, ENEMY_SPEED);
+      let rect =  Rect.new(-100 , -100, 25, 25, 0);
       do rect.isEnemy(true);
       let enemies[i] = rect;
       let i = i + 1;
@@ -125,6 +126,10 @@ class Game
       }
       do rect.setWidth(rect.getHeight());
 
+      do rect.setSpeed(MathV2.mod(ticks, (MAX_ENEMY_SPEED + 1)));
+      if (rect.getSpeed() = 0) {
+        do rect.setSpeed(MIN_ENEMY_SPEED);
+      }
       let lastEnemy = lastEnemy + 1;
       if (lastEnemy > (MAX_ENEMIES - 1)) {
         let lastEnemy = 0;

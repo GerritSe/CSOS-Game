@@ -11,6 +11,9 @@ class Game
 
   constructor Game new()
   {
+    var int i;
+    var Rect rect;
+
     let MAX_ENEMIES   = 10;
     let ENEMY_SPEED   = 2;
     let PLAYER_SPEED  = 2;
@@ -21,6 +24,14 @@ class Game
     let playerDirection = 2;
     let ticks = 0;
 
+    let i = 0;
+    while (i < MAX_ENEMIES)
+    {
+      let rect =  Rect.new(-100 , -100, 25, 25);
+      do rect.isEnemy(true);
+      let enemies[i] = rect;
+      let i = i + 1;
+    }
     return this;
   }
 
@@ -95,7 +106,18 @@ class Game
 
   method void render()
   {
+    var int i;
+    var Rect rect;
+
     do player.draw();
+
+    let i = 0;
+    while (i < MAX_ENEMIES)
+    {
+      let rect = enemies[i];
+      do rect.draw();
+      let i = i + 1;
+    }
     return;
   }
 

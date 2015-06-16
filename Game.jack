@@ -18,9 +18,9 @@ class Game
     let MAX_ENEMY_SIZE  = 40;
     let MIN_ENEMY_SIZE  = 15;
     let ENEMY_SPEED     = 2;
-    let PLAYER_SPEED    = 2;
+    let PLAYER_SPEED    = 4;
 
-    let player = Rect.new(0, 0, 20, 20);
+    let player = Rect.new(0, 0, 20, 20, PLAYER_SPEED);
     let enemies = Array.new(MAX_ENEMIES);
     let running = true;
     let playerDirection = 2;
@@ -31,7 +31,7 @@ class Game
     let i = 0;
     while (i < MAX_ENEMIES)
     {
-      let rect =  Rect.new(-100 , -100, 25, 25);
+      let rect =  Rect.new(-100 , -100, 25, 25, ENEMY_SPEED);
       do rect.isEnemy(true);
       let enemies[i] = rect;
       let i = i + 1;
@@ -96,16 +96,16 @@ class Game
       let playerDirection = 1;
     }
     if (playerDirection = 1) {
-      do player.moveUp(PLAYER_SPEED);
+      do player.moveUp();
     }
     if (playerDirection = 2) {
-      do player.moveRight(PLAYER_SPEED);
+      do player.moveRight();
     }
     if (playerDirection = 3) {
-      do player.moveDown(PLAYER_SPEED);
+      do player.moveDown();
     }
     if (playerDirection = 4) {
-      do player.moveLeft(PLAYER_SPEED);
+      do player.moveLeft();
     }
 
     if (MathV2.mod(ticks, Math.divide(2000, Math.multiply(MAX_ENEMIES, 7))) = 0)
@@ -141,7 +141,7 @@ class Game
     while (i < MAX_ENEMIES)
     {
       let rect = enemies[i];
-      do rect.moveLeft(PLAYER_SPEED);
+      do rect.moveLeft();
       let i = i + 1;
     }
 

@@ -129,19 +129,24 @@ class Game
     if (MathV2.mod(ticks, Math.divide(2000, Math.multiply(MAX_ENEMIES, 7))) = 0)
     {
       let rect = enemies[lastEnemy];
-      let lastEnemyY = MathV2.mod(Math.abs(MathV2.mod(ticks + player.getX(), 512 + player.getY()) + player.getX() - player.getY() - lastEnemyY), 255);
-      do rect.setX(512);
-      do rect.setY(lastEnemyY);
 
-      do rect.setHeight(MathV2.mod(ticks, MAX_ENEMY_SIZE));
-      if (rect.getHeight() < MIN_ENEMY_SIZE) {
-        do rect.setHeight(MIN_ENEMY_SIZE);
-      }
-      do rect.setWidth(rect.getHeight());
+      // Only create new enemy if the current one is out of screen
+      if ((rect.getX() + rect.getWidth()) < 0)
+      {
+        let lastEnemyY = MathV2.mod(Math.abs(MathV2.mod(ticks + player.getX(), 512 + player.getY()) + player.getX() - player.getY() - lastEnemyY), 255);
+        do rect.setX(512);
+        do rect.setY(lastEnemyY);
 
-      do rect.setSpeed(MathV2.mod(ticks, (MAX_ENEMY_SPEED + 1)));
-      if (rect.getSpeed() = 0) {
-        do rect.setSpeed(MIN_ENEMY_SPEED);
+        do rect.setHeight(MathV2.mod(ticks, MAX_ENEMY_SIZE));
+        if (rect.getHeight() < MIN_ENEMY_SIZE) {
+          do rect.setHeight(MIN_ENEMY_SIZE);
+        }
+        do rect.setWidth(rect.getHeight());
+
+        do rect.setSpeed(MathV2.mod(ticks, (MAX_ENEMY_SPEED + 1)));
+        if (rect.getSpeed() = 0) {
+          do rect.setSpeed(MIN_ENEMY_SPEED);
+        }
       }
       let lastEnemy = lastEnemy + 1;
       if (lastEnemy > (MAX_ENEMIES - 1)) {

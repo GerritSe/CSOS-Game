@@ -1,14 +1,15 @@
 class Rect
 {
-  field int x, y, width, height;
+  field int x, y, width, height, speed;
   field boolean enemy;
 
-  constructor Rect new(int pX, int pY, int pWidth, int pHeight)
+  constructor Rect new(int pX, int pY, int pWidth, int pHeight, int pSpeed)
   {
     let x = pX;
     let y = pY;
     let width = pWidth;
     let height = pHeight;
+    let speed = pSpeed;
     let enemy = false;
 
     return this;
@@ -82,27 +83,27 @@ class Rect
     return;
   }
 
-  method void moveUp(int px)
+  method void moveUp()
   {
-    let y = y - px;
+    let y = y - speed;
     return;
   }
 
-  method void moveRight(int px)
+  method void moveRight()
   {
-    let x = x + px;
+    let x = x + speed;
     return;
   }
 
-  method void moveDown(int px)
+  method void moveDown()
   {
-    let y = y + px;
+    let y = y + speed;
     return;
   }
 
-  method void moveLeft(int px)
+  method void moveLeft()
   {
-    let x = x - px;
+    let x = x - speed;
     return;
   }
 
@@ -126,6 +127,11 @@ class Rect
     return height;
   }
 
+  method int getSpeed()
+  {
+    return speed;
+  }
+
   method void setX(int pX)
   {
     let x = pX;
@@ -137,14 +143,22 @@ class Rect
     let y = pY;
     return;
   }
+
   method void setWidth(int pWidth)
   {
     let width = pWidth;
     return;
   }
+
   method void setHeight(int pHeight)
   {
     let height = pHeight;
+    return;
+  }
+
+  method void setSpeed(int pSpeed)
+  {
+    let speed = pSpeed;
     return;
   }
 }

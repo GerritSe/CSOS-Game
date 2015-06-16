@@ -81,6 +81,12 @@ class Game
     if (key = 130) {
       let playerDirection = 4;
     }
+    if (key = 46) {
+      let MAX_ENEMY_SIZE = MAX_ENEMY_SIZE + 5;
+    }
+    if (key = 44) {
+      let MAX_ENEMY_SIZE = MAX_ENEMY_SIZE - 5;
+    }
     return;
   }
 
@@ -88,6 +94,13 @@ class Game
   {
     var Rect rect;
 
+    // Enemy size has to be in a certain range
+    if (MAX_ENEMY_SIZE > 50) {
+      let MAX_ENEMY_SIZE = 50;
+    }
+    if (MAX_ENEMY_SIZE < 15) {
+      let MAX_ENEMY_SIZE = 15;
+    }
     if (player.getX() < 0) {
       let playerDirection = 2;
     }

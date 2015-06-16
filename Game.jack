@@ -7,7 +7,7 @@ class Game
   // Direction in which the player moves
   // 1 = up, 2 = right, etc.
   // Standing still is not possible in this game
-  field int playerDirection;
+  field int playerDirection, ticks;
 
   constructor Game new()
   {
@@ -19,6 +19,7 @@ class Game
     let enemies = Array.new(MAX_ENEMIES);
     let running = true;
     let playerDirection = 2;
+    let ticks = 0;
 
     return this;
   }
@@ -27,6 +28,15 @@ class Game
   {
     do enemies.dispose();
     do Memory.deAlloc(this);
+    return;
+  }
+
+  method void clock()
+  {
+    let ticks = ticks + 1;
+    if (ticks > 20000) {
+      let ticks = 0;
+    }
     return;
   }
 
@@ -94,6 +104,7 @@ class Game
     while (running)
     {
       do handleInputs();
+      do clock();
       do gameLogic();
       do Screen.clearScreen();
       do render();

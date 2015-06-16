@@ -229,6 +229,22 @@ class Game
     return;
   }
 
+  method void gameOver()
+  {
+    do Screen.clearScreen();
+    do Output.moveCursor(10, 22);
+    do Output.printString("G A M E  O V E R");
+    do Output.moveCursor(12, 23);
+    do Output.printString("Your score: ");
+    do Output.printInt(score);
+    do Output.moveCursor(16, 20);
+    do Output.printString("Hint: Increase the size");
+    do Output.moveCursor(17, 20);
+    do Output.printString("of your enemies to gain");
+    do Output.moveCursor(18, 20);
+    do Output.printString("score faster");
+    return;
+  }
   method void run()
   {
     while (running)
@@ -240,6 +256,8 @@ class Game
       do render();
       do Sys.wait(20);
     }
+
+    do gameOver();
     return;
   }
 }

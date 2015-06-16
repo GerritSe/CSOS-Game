@@ -125,4 +125,26 @@ class Rect
   {
     return height;
   }
+
+  method void setX(int pX)
+  {
+    let x = pX;
+    return;
+  }
+
+  method void setY(int pY)
+  {
+    let y = pY;
+    return;
+  }
+  method void setWidth(int pWidth)
+  {
+    let width = pWidth;
+    return;
+  }
+  method void setHeight(int pHeight)
+  {
+    let height = pHeight;
+    return;
+  }
 }

@@ -52,7 +52,7 @@ class Game
   {
     let ticks = ticks + 1;
     if (MathV2.mod(ticks, 50) = 0) {
-      let score = score + Math.divide(MAX_ENEMY_SIZE, 20);
+      let score = score + Math.divide(MAX_ENEMY_SIZE, 10);
     }
     if (ticks > 2000) {
       let ticks = 0;

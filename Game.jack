@@ -7,7 +7,7 @@ class Game
   // Direction in which the player moves
   // 1 = up, 2 = right, etc.
   // Standing still is not possible in this game
-  field int playerDirection, ticks, lastEnemy, lastEnemyY;
+  field int playerDirection, ticks, score, lastEnemy, lastEnemyY;
 
   constructor Game new()
   {
@@ -25,6 +25,7 @@ class Game
     let running = true;
     let playerDirection = 2;
     let ticks = 0;
+    let score = 0;
     let lastEnemy = 0;
     let lastEnemyY = 0;
 
@@ -49,6 +50,9 @@ class Game
   method void clock()
   {
     let ticks = ticks + 1;
+    if (MathV2.mod(ticks, 50) = 0) {
+      let score = score + Math.divide(MAX_ENEMY_SIZE, 20);
+    }
     if (ticks > 2000) {
       let ticks = 0;
     }
@@ -162,6 +166,12 @@ class Game
       do rect.draw();
       let i = i + 1;
     }
+
+    // Enabling this code to output the current score, the game
+    // will generate a heap overflow after 20 seconds
+    // do Output.moveCursor(1, 50);
+    // do Output.printString("Score: ");
+    // do Output.printInt(score);
     return;
   }
 

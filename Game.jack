@@ -153,6 +153,41 @@ class Game
     return;
   }
 
+  method void detectCollisions(int enemyId)
+  {
+    var Rect rect;
+
+    let rect = enemies[enemyId];
+
+    if ((player.getX() < rect.getX()) & ((player.getX() + player.getWidth()) > rect.getX()))
+    {
+      if ((player.getY() < rect.getY()) & ((player.getY() + player.getHeight() > rect.getY()))) {
+        // BOOM
+        let running = false;
+      }
+
+      if ((player.getY() > rect.getY()) & ((rect.getY() + rect.getHeight()) > player.getY())) {
+        // BOOM
+        let running = false;
+      }
+
+    }
+
+    if ((player.getX() > rect.getX()) & ((rect.getX() + rect.getWidth()) > player.getX()))
+    {
+      if ((player.getY() < rect.getY()) & ((player.getY() + player.getHeight()) > rect.getY())) {
+        // BOOM
+        let running = false;
+      }
+
+      if ((player.getY() > rect.getY()) & ((rect.getY() + rect.getHeight()) > player.getY())) {
+        // BOOM
+        let running = false;
+      }
+    }
+    return;
+  }
+
   method void moveEnemies()
   {
     var int i;
@@ -164,6 +199,7 @@ class Game
     {
       let rect = enemies[i];
       do rect.moveLeft();
+      do detectCollisions(i);
       let i = i + 1;
     }
 

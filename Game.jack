@@ -1,28 +1,31 @@
 class Game
 {
-  field int MAX_ENEMIES, ENEMY_SPEED, PLAYER_SPEED;
+  field int MAX_ENEMIES, MAX_ENEMY_SIZE, MIN_ENEMY_SIZE, ENEMY_SPEED, PLAYER_SPEED;
   field Rect player;
   field Array enemies;
   field boolean running;
   // Direction in which the player moves
   // 1 = up, 2 = right, etc.
   // Standing still is not possible in this game
-  field int playerDirection, ticks;
+  field int playerDirection, ticks, lastEnemy;
 
   constructor Game new()
   {
     var int i;
     var Rect rect;
 
-    let MAX_ENEMIES   = 10;
-    let ENEMY_SPEED   = 2;
-    let PLAYER_SPEED  = 2;
+    let MAX_ENEMIES     = 20;
+    let MAX_ENEMY_SIZE  = 40;
+    let MIN_ENEMY_SIZE  = 15;
+    let ENEMY_SPEED     = 2;
+    let PLAYER_SPEED    = 2;
 
     let player = Rect.new(0, 0, 20, 20);
     let enemies = Array.new(MAX_ENEMIES);
     let running = true;
     let playerDirection = 2;
     let ticks = 0;
+    let lastEnemy = 0;
 
     let i = 0;
     while (i < MAX_ENEMIES)
@@ -45,7 +48,7 @@ class Game
   method void clock()
   {
     let ticks = ticks + 1;
-    if (ticks > 20000) {
+    if (ticks > 2000) {
       let ticks = 0;
     }
     return;
@@ -77,6 +80,8 @@ class Game
 
   method void gameLogic()
   {
+    var Rect rect;
+
     if (player.getX() < 0) {
       let playerDirection = 2;
     }
@@ -101,6 +106,36 @@ class Game
     if (playerDirection = 4) {
       do player.moveLeft(PLAYER_SPEED);
     }
+
+    if (MathV2.mod(ticks, Math.divide(2000, Math.multiply(MAX_ENEMIES, 7))) = 0)
+    {
+      let rect = enemies[lastEnemy];
+      do rect.setX(512);
+      do rect.setY(128);
+      let lastEnemy = lastEnemy + 1;
+      if (lastEnemy > (MAX_ENEMIES - 1)) {
+        let lastEnemy = 0;
+      }
+    }
+
+    do moveEnemies();
+    return;
+  }
+
+  method void moveEnemies()
+  {
+    var int i;
+    var Rect rect;
+
+    let i = 0;
+
+    while (i < MAX_ENEMIES)
+    {
+      let rect = enemies[i];
+      do rect.moveLeft(PLAYER_SPEED);
+      let i = i + 1;
+    }
+
     return;
   }
 

@@ -12,4 +12,9 @@ class MathV2
 
     return x + y;
   }
+
+  function int blabla()
+  {
+    return 0;
+  }
 }
